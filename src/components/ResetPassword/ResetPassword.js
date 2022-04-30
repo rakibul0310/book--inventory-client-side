@@ -33,7 +33,7 @@ const ResetPassword = () => {
 
     return (
         <div className='min-h-screen flex flex-col justify-center items-center'>
-            <h2 className='text-lg font-medium'>Login with email and password</h2>
+            <h2 className='text-lg font-medium'>Reset Your Password</h2>
             <div className='flex flex-col w-3/4 md:w-1/4'>
                 <label className='text-lg mt-5' htmlFor="email">Email</label>
                 <input onBlur={handleEmail} className='h-10 pl-3 outline-[#1566AA] border-[1px] border-gray-200' type="email" name="email" id="email" placeholder='Enter your email' required />
