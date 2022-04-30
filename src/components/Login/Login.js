@@ -1,9 +1,47 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import auth from '../../firebase.init';
+
+import googleLogo from '../../images/Google-logo.png';
+import spinner from '../../images/spinner.gif';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [signInWithGoogle, googleUser, googleLoading, googleError] = useSignInWithGoogle(auth);
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
+
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useSignInWithEmailAndPassword(auth);
+
+    useEffect(() => {
+        if (user || googleUser) {
+            return navigate(from, { replace: true });
+        }
+    }, [user, googleUser, navigate, from])
+
+    if (error || googleError) {
+        return (
+            <div className='min-h-screen text-red-500 text-center'>
+                <p>Error: {error?.message || googleError?.message}</p>
+            </div>
+        );
+    }
+    if (loading || googleLoading) {
+        return <div className=' flex justify-center items-center bg-[#F4EFEC]'>
+            <img src={spinner} alt="" />
+        </div>;
+    }
+
 
     const handleEmail = (event) => {
         const value = event.target.value;
@@ -15,6 +53,7 @@ const Login = () => {
     }
     const handleLogin = (e) => {
         e.preventDefault();
+        signInWithEmailAndPassword(email, password);
     }
     return (
         <div className='min-h-screen flex flex-col justify-center items-center'>
@@ -28,7 +67,19 @@ const Login = () => {
                 <Link to="/resetpassword"><span className='text-sm text-blue-500 underline decoration-blue-500'>Forgot password?</span></Link>
                 <span className='text-sm'>Don't have any account? <Link to="/register"><button className='text-blue-500 underline decoration-blue-500'>register</button></Link></span>
             </form>
-
+            <div className='mt-8'>
+                <div className='flex justify-center items-center'>
+                    <div className='w-[80px] h-[3px] bg-slate-200'></div>
+                    <small className='mx-2 text-lg font-semibold'>Or</small>
+                    <div className='w-[80px] h-[3px] bg-slate-200'></div>
+                </div>
+                <div>
+                    <button onClick={() => signInWithGoogle()} className='my-5 px-6 py-1 bg-red-600 text-white hover:bg-[#1F2B6C] duration-500 text-lg font-semibold cursor-pointer rounded-sm'>
+                        <img className='inline mr-3' src={googleLogo} alt="" height={30} width={30} />
+                        Login with Google
+                    </button>
+                </div>
+            </div>
         </div>
     );
 };
