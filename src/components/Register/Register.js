@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
@@ -25,6 +25,12 @@ const Register = () => {
 
     const from = location.state?.from?.pathname || "/";
 
+    useEffect(() => {
+        if (user || googleUser) {
+            return navigate(from, { replace: true });
+        }
+    }, [user, googleUser, navigate, from])
+
     if (error || googleError) {
         return (
             <div className='min-h-screen text-red-500 text-center'>
@@ -37,9 +43,7 @@ const Register = () => {
             <img src={spinner} alt="" />
         </div>;
     }
-    if (user || googleUser) {
-        return navigate(from, { replace: true });
-    }
+
 
 
 
