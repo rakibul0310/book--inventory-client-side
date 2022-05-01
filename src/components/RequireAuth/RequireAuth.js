@@ -3,14 +3,18 @@ import { useAuthState, useSendEmailVerification } from 'react-firebase-hooks/aut
 import { Navigate, useLocation } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import auth from '../../../firebase.init';
-import Loading from '../../Shared/Loading/Loading';
+
+import spinner from '../../images/spinner.gif';
 
 const RequireAuth = ({ children }) => {
     const [user, loading] = useAuthState(auth);
     const location = useLocation();
     const [sendEmailVerification, sending, error] = useSendEmailVerification(auth);
+
     if (loading) {
-        return <Loading></Loading>
+        return <div className=' flex justify-center items-center bg-[#F4EFEC]'>
+            <img src={spinner} alt="" />
+        </div>;
     }
 
     if (!user) {
