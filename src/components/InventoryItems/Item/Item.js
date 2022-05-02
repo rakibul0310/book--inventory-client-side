@@ -11,10 +11,10 @@ const Item = (props) => {
                 <span className='font-semibold'>Price: ${price}</span>
                 <span className='font-semibold'>Quantity: {quantity}</span>
                 <span className='font-semibold'>Supplier: {supplier}</span>
-                <p className='text-sm'><span className='font-semibold'>Description: </span>{description}</p>
+                <p className='text-sm'><span className='font-semibold'>Description: </span>{`${description.slice(0, 150)}....`}</p>
             </div>
             <Link to={`/item/${name}`}>
-                <button className='px-6 py-2 duration-500 text-xl text-black font-semibold border-[2px] border-[#FDC300] rounded-3xl hover:bg-[#FDC300] hover:text-white'>Update Stock</button>
+                <button className='px-6 py-2 mt-3 duration-500 text-xl text-[#1566AA] font-semibold border-[2px] border-[#1566AA] rounded-3xl hover:bg-[#1566AA] hover:text-white'>Update Stock</button>
             </Link>
         </div>
     );
