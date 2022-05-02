@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Services from '../Services/Services';
 
 import './Home.css';
 
@@ -13,6 +14,7 @@ const Home = () => {
                     <button className='btn px-6 py-2 border-[1px] border-white mt-6 text-xl font-medium hover:bg-[#1566AA] duration-500'><Link to="/register">Register Now</Link></button>
                 </div>
             </div>
+            <Services></Services>
         </div>
     );
 };
