@@ -36,8 +36,8 @@ const Header = () => {
                     <CustomLink to="/contact">Contact Us</CustomLink>
                     {
                         user ?
-                            <button className='btn px-6 py-1 mt-5 md:mt-0 bg-[#FDC300] text-white font-medium rounded-[50px]' onClick={handleSignOut}>Log Out</button> :
-                            <button className='btn px-6 py-1 mt-5 md:mt-0 bg-[#FDC300] text-white font-medium rounded-[50px]'><Link to="/login">Login</Link></button>
+                            <button className='btn px-3 md:px-6 py-1 mt-5 md:mt-0 bg-[#FDC300] text-white font-medium rounded-[50px]' onClick={handleSignOut}>Log Out</button> :
+                            <button className='btn px-3 md:px-6 py-1 mt-5 md:mt-0 bg-[#FDC300] text-white font-medium rounded-[50px]'><Link to="/login">Login</Link></button>
                     }
                 </nav>
             </div >

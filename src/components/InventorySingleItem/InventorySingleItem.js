@@ -19,7 +19,6 @@ const InventorySingleItem = () => {
     const handleDelivered = (id) => {
         let newItem = item;
         newItem.quantity = newItem.quantity - 1;
-
         fetch(`http://localhost:5000/inventory/${id}`, {
             method: 'PUT',
             headers: {
@@ -29,9 +28,30 @@ const InventorySingleItem = () => {
         })
             .then(res => res.json())
             .then(data => console.log(data))
-
+        setItem(newItem);
         setQuantity(newItem.quantity);
-        console.log(id)
+    }
+
+    const handleRestock = (e) => {
+        e.preventDefault();
+        const restockQuantity = e.target.quantity.value;
+        const newItem = item;
+        const url = `http://localhost:5000/inventory/${newItem._id}`;
+        newItem.quantity = newItem.quantity + parseInt(restockQuantity);
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newItem)
+        })
+            .then(res => res.json())
+            .then(data => console.log(data))
+
+        setItem(newItem);
+        setQuantity(newItem.quantity);
+
+        e.target.reset();
     }
 
     return (
@@ -48,6 +68,15 @@ const InventorySingleItem = () => {
                     <p className='text-sm'><span className='font-semibold'>Description: </span>{item.description}</p>
                 </div>
                 <button onClick={() => handleDelivered(id)} className='px-6 py-2 mt-3 duration-500 text-xl text-white font-semibold border-[2px] rounded-3xl bg-red-500/70 hover:bg-red-500 hover:text-white'>Delivered</button>
+            </div>
+            <div className='w-full flex flex-col justify-center items-center mt-5'>
+                <h2 className='text-3xl text-green-500/70 font-bold mb-3 mt-8'>Restock The Item</h2>
+                <form className='flex w-3/4 md:w-1/4' onSubmit={handleRestock}>
+                    <div className='flex border-[1px] border-[#1566AA] p-0 w-fit h-fit mt-3'>
+                        <input className='md:w-1/2 lg:w-full m-0 pl-2 bg-transparent text-gray-900 font-thin border-0 outline-none' type="number" name="quantity" id="quantity" placeholder='Enter quantity you want to restock' required />
+                        <input className='my-5 px-6 py-1 bg-[#1567aab6] hover:bg-[#1566AA] text-white duration-500 text-lg font-medium cursor-pointer' type="submit" value="Restock" />
+                    </div>
+                </form>
             </div>
         </div>
     );
