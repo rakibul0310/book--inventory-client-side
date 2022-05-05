@@ -7,37 +7,45 @@ const AddItem = () => {
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState(0);
     const [quantity, setQuantity] = useState(0);
-    const [supllier, setSupplier] = useState('');
+    const [supplier, setSupplier] = useState('');
     const [sold, setSold] = useState('');
 
     const handleEmail = (e) => {
-        setEmail(e.target.value)
+        const value = e.target.value;
+        setEmail(value)
     }
     const handleItemName = (e) => {
-        setItemName(e.target.value)
+        const value = e.target.value;
+        setItemName(value)
     }
     const handleImage = (e) => {
-        setImage(e.target.value)
+        const value = e.target.value;
+        setImage(value)
     }
     const handleDescription = (e) => {
-        setDescription(e.target.value)
+        const value = e.target.value;
+        setDescription(value)
     }
     const handlePrice = (e) => {
-        setPrice(parseFloat(e.target.value))
+        const value = e.target.value;
+        setPrice(parseFloat(value))
     }
     const handleQuantity = (e) => {
-        setQuantity(parseInt(e.target.value))
+        const value = e.target.value;
+        setQuantity(parseInt(value))
     }
     const handleSupplier = (e) => {
-        setSupplier(e.target.value)
+        const value = e.target.value;
+        setSupplier(value);
     }
     const handleSold = (e) => {
-        setSold(e.target.value)
+        const value = e.target.value;
+        setSold(value);
     }
 
     const handleAddItem = (e) => {
         e.preventDefault();
-        const newItem = { email, itemName, image, description, price, quantity, supllier, sold }
+        const newItem = { email, itemName, image, description, price, quantity, supplier, sold }
         fetch('http://localhost:5000/additem', {
             method: 'POST',
             headers: {
@@ -48,7 +56,7 @@ const AddItem = () => {
             .then(res => res.json())
             .then(data => console.log(data))
 
-        // e.target.reset();
+        e.target.reset();
     }
 
     return (

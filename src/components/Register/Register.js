@@ -31,10 +31,13 @@ const Register = () => {
         }
     }, [user, googleUser, navigate, from])
 
+    const handleTryAgain = () => window.location.reload()
+
     if (error || googleError) {
         return (
-            <div className='min-h-screen text-red-500 text-center'>
+            <div className='min-h-screen text-red-500 flex flex-col justify-center items-center text-3xl text-center'>
                 <p>Error: {error?.message || googleError?.message}</p>
+                <button onClick={handleTryAgain} className='btn px-6 py-2 bg-blue-500/70 hover:bg-blue-500 text-gray-700 text-xl font-medium mt-5'>Try again</button>
             </div>
         );
     }

@@ -8,6 +8,7 @@ const CustomLink = ({ children, to, ...props }) => {
     return (
         <div>
             <Link
+                className='mt-3 md:mt-0 mx-4'
                 style={{
                     textDecoration: match ? "underline" : "none",
                     color: match ? "#FDC300" : "white",

@@ -30,8 +30,17 @@ const Header = () => {
                             <FontAwesomeIcon icon={faBars} />
                     }
                 </div>
-                <nav className={`w-1/2 p-10 md:p-0 text-lg text-white font-normal bg-[#1566AA] lg:bg-transparent flex flex-col md:flex-row justify-evenly absolute right-0 md:static duration-500 ${open ? 'top-0' : 'top-[-500px]'}`}>
+                <nav className={`w-3/4 p-10 md:p-0 text-lg text-white font-normal bg-[#1566AA] lg:bg-transparent flex flex-col md:flex-row justify-evenly absolute right-0 md:static duration-500 ${open ? 'top-0' : 'top-[-500px]'}`}>
                     <CustomLink to="/">Home</CustomLink>
+                    {
+                        user && <CustomLink to="/manageinventories">Manage Item</CustomLink>
+                    }
+                    {
+                        user && <CustomLink to="/inventory/additem">Add Item</CustomLink>
+                    }
+                    {
+                        user && <CustomLink to="/inventory/myitems">My Item</CustomLink>
+                    }
                     <CustomLink to="/blogs">Blogs</CustomLink>
                     <CustomLink to="/contact">Contact Us</CustomLink>
                     {
