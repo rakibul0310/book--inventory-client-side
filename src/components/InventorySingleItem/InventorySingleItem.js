@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 const InventorySingleItem = () => {
     const { id } = useParams();
@@ -56,6 +56,9 @@ const InventorySingleItem = () => {
 
     return (
         <div className='flex flex-col justify-center items-center px-5 my-20'>
+            <div className='w-full flex justify-end'>
+                <button className='btn px-5 md:px-8 py-1 md:py-2 border-[1px] border-[#1566AA] mb-10 text-[#1566AA] text-xl md:text-3xl font-medium hover:bg-[#1566AA] hover:text-white duration-500'><Link to="/manageinventories">Manage Inventories</Link></button>
+            </div>
             <div className='flex flex-col justify-center items-center border-[1px] border-gray-300 rounded-md py-3 w-full md:w-2/4'>
                 <img className='' src={item.image} alt="" width={230} height={250} />
                 <div className='p-3 flex flex-col'>
@@ -74,9 +77,10 @@ const InventorySingleItem = () => {
                 <form className='flex w-3/4 md:w-1/4' onSubmit={handleRestock}>
                     <div className='flex border-[1px] border-[#1566AA] p-0 w-fit h-fit mt-3'>
                         <input className='md:w-1/2 lg:w-full m-0 pl-2 bg-transparent text-gray-900 font-thin border-0 outline-none' type="number" name="quantity" id="quantity" placeholder='Enter quantity you want to restock' required />
-                        <input className='my-5 px-6 py-1 bg-[#1567aab6] hover:bg-[#1566AA] text-white duration-500 text-lg font-medium cursor-pointer' type="submit" value="Restock" />
+                        <input className='px-6 py-1 bg-[#1567aab6] hover:bg-[#1566AA] text-white duration-500 text-lg font-medium cursor-pointer' type="submit" value="Restock" />
                     </div>
                 </form>
+
             </div>
         </div>
     );

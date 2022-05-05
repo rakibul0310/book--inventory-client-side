@@ -5,6 +5,7 @@ import ContactUs from './components/ContactUs/ContactUs';
 import Home from './components/Home/Home';
 import InventorySingleItem from './components/InventorySingleItem/InventorySingleItem';
 import Login from './components/Login/Login';
+import ManageInventory from './components/ManageInventory/ManageInventory';
 import NoPageFound from './components/NoPageFound/NoPageFound';
 import Register from './components/Register/Register';
 import RequireAuth from './components/RequireAuth/RequireAuth';
@@ -23,6 +24,11 @@ function App() {
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/resetpassword' element={<ResetPassword></ResetPassword>}></Route>
         <Route path='/register' element={<Register></Register>}></Route>
+        <Route path='/manageinventories' element={
+          <RequireAuth>
+            <ManageInventory></ManageInventory>
+          </RequireAuth>}>
+        </Route>
         <Route path='/inventory/:id' element={
           <RequireAuth>
             <InventorySingleItem></InventorySingleItem>
