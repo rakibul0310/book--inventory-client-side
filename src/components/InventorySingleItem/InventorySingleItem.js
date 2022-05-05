@@ -76,7 +76,7 @@ const InventorySingleItem = () => {
                 <h2 className='text-3xl text-green-500/70 font-bold mb-3 mt-8'>Restock The Item</h2>
                 <form className='flex w-3/4 md:w-1/4' onSubmit={handleRestock}>
                     <div className='flex border-[1px] border-[#1566AA] p-0 w-fit h-fit mt-3'>
-                        <input className='md:w-1/2 lg:w-full m-0 pl-2 bg-transparent text-gray-900 font-thin border-0 outline-none' type="number" name="quantity" id="quantity" placeholder='Enter quantity you want to restock' required />
+                        <input className='md:w-1/2 lg:w-full m-0 pl-2 bg-transparent text-gray-900 font-thin border-0 outline-none' type="number" name="quantity" id="quantity" placeholder='Quantity you want to restock' required />
                         <input className='px-6 py-1 bg-[#1567aab6] hover:bg-[#1566AA] text-white duration-500 text-lg font-medium cursor-pointer' type="submit" value="Restock" />
                     </div>
                 </form>
