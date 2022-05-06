@@ -32,7 +32,7 @@ const Register = () => {
         }
         if (googleUser) {
             const getAccesToken = async () => {
-                await axios.post('http://localhost:5000/login', { email: googleUser.user.email })
+                await axios.post('https://fierce-hollows-01189.herokuapp.com/login', { email: googleUser.user.email })
                     .then(res => {
                         localStorage.setItem('accessToken', res.data.accessToken);
                     })
@@ -83,7 +83,7 @@ const Register = () => {
         if (password === confrimPassword) {
             const userEmail = email;
             await createUserWithEmailAndPassword(email, password);
-            await axios.post('http://localhost:5000/login', { email: userEmail })
+            await axios.post('https://fierce-hollows-01189.herokuapp.com/login', { email: userEmail })
                 .then(res => {
                     localStorage.setItem('accessToken', res.data.accessToken);
                 })

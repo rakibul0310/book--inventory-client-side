@@ -10,7 +10,7 @@ const InventoryItems = () => {
     const [load, setLoad] = useState(true);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/home/book')
+        axios.get('https://fierce-hollows-01189.herokuapp.com/home/book')
             .then(res => {
                 setItems(res.data)
                 setLoad(false)

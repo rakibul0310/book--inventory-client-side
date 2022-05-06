@@ -10,7 +10,7 @@ const MyItems = () => {
 
     useEffect(() => {
         const getMyItem = async () => {
-            const url = `http://localhost:5000/myitems?email=${user.email}`;
+            const url = `https://fierce-hollows-01189.herokuapp.com/myitems?email=${user.email}`;
             await axios.get(url, {
                 headers: {
                     authorization: `Bearer ${localStorage.getItem("accessToken")}`
@@ -26,7 +26,7 @@ const MyItems = () => {
     const handleDeleteItem = (id) => {
         let agree = window.confirm("Are you sure?");
         if (agree) {
-            const url = `http://localhost:5000/inventory/${id}`;
+            const url = `https://fierce-hollows-01189.herokuapp.com/inventory/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

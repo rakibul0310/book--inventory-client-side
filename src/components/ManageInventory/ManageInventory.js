@@ -8,7 +8,7 @@ const ManageInventory = () => {
     const [allItems, setAllItems] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/books')
+        fetch('https://fierce-hollows-01189.herokuapp.com/books')
             .then(res => res.json())
             .then(data => setAllItems(data))
     }, [])
@@ -16,7 +16,7 @@ const ManageInventory = () => {
     const handleDeleteItem = (id) => {
         let agree = window.confirm("Are you sure?");
         if (agree) {
-            const url = `http://localhost:5000/inventory/${id}`;
+            const url = `https://fierce-hollows-01189.herokuapp.com/inventory/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })
