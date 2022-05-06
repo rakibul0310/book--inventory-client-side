@@ -33,7 +33,7 @@ const ManageInventory = () => {
 
     return (
         <div className='flex flex-col w-full justify-center px-5'>
-            <div className='mt-10 mb-5 flex justify-end px-10'>
+            <div className='mt-10 mb-5 flex justify-center md:justify-end px-10'>
                 <button className='btn px-6 py-1 text-2xl font-semibold text-white bg-green-500/70 hover:bg-green-500 duration-500'><Link to="/inventory/additem"><FontAwesomeIcon icon={faCirclePlus} /> Add Item</Link></button>
             </div>
             <h3 className='text-[#1566AA] text-3xl font-bold mb-5'>Manage Inventory</h3>
