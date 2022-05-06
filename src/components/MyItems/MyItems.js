@@ -35,7 +35,7 @@ const MyItems = () => {
     return (
         <div className='flex flex-col w-full justify-center px-5 my-10'>
             <h3 className='text-[#1566AA] text-3xl font-bold mb-5'>My Items</h3>
-            <table className='border-collapse border border-gray-300 text-center p-3 mb-7'>
+            <table className='min-h-[200px] border-collapse border border-gray-300 text-center p-3 mb-7'>
                 <thead className='bg-blue-200/70 text-xl'>
                     <tr>
                         <th className='border border-gray-300 py-4'>Name</th>

@@ -1,8 +1,10 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-const InventorySingleItem = () => {
+const UpdateInventoryItem = () => {
     const { id } = useParams();
     const [item, setItem] = useState({});
     const [quantity, setQuantity] = useState(0);
@@ -18,6 +20,10 @@ const InventorySingleItem = () => {
 
     const handleDelivered = (id) => {
         let newItem = item;
+        if (newItem.quantity === 0) {
+            alert("Please restock item");
+            return;
+        }
         newItem.quantity = newItem.quantity - 1;
         fetch(`http://localhost:5000/inventory/${id}`, {
             method: 'PUT',
@@ -51,6 +57,7 @@ const InventorySingleItem = () => {
         setItem(newItem);
         setQuantity(newItem.quantity);
 
+        toast("Restock item successfully!");
         e.target.reset();
     }
 
@@ -80,10 +87,10 @@ const InventorySingleItem = () => {
                         <input className='px-6 py-1 bg-[#1567aab6] hover:bg-[#1566AA] text-white duration-500 text-lg font-medium cursor-pointer' type="submit" value="Restock" />
                     </div>
                 </form>
-
+                <ToastContainer />
             </div>
         </div>
     );
 };
 
-export default InventorySingleItem;
+export default UpdateInventoryItem;

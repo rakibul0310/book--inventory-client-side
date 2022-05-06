@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AddItem = () => {
     const [email, setEmail] = useState('');
@@ -56,6 +58,7 @@ const AddItem = () => {
             .then(res => res.json())
             .then(data => console.log(data))
 
+        toast("Item added successfully!");
         e.target.reset();
     }
 
@@ -81,6 +84,7 @@ const AddItem = () => {
                 <input onBlur={handleSold} className='h-10 pl-3 outline-[#1566AA] border-[1px] border-gray-200' type="text" name="sold" id="sold" placeholder='sold' required />
                 <input className='my-5 px-6 py-1 bg-green-500/70 hover:bg-green-500 text-white text-lg font-semibold cursor-pointer' type="submit" value="ADD ITEM" />
             </form>
+            <ToastContainer />
         </div>
     );
 };

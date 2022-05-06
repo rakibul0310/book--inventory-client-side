@@ -4,7 +4,6 @@ import AddItem from './components/AddItem/AddItem';
 import Blogs from './components/Blogs/Blogs';
 import ContactUs from './components/ContactUs/ContactUs';
 import Home from './components/Home/Home';
-import InventorySingleItem from './components/InventorySingleItem/InventorySingleItem';
 import Login from './components/Login/Login';
 import ManageInventory from './components/ManageInventory/ManageInventory';
 import MyItems from './components/MyItems/MyItems';
@@ -14,6 +13,7 @@ import RequireAuth from './components/RequireAuth/RequireAuth';
 import ResetPassword from './components/ResetPassword/ResetPassword';
 import Footer from './components/Shared/Footer/Footer';
 import Header from './components/Shared/Header/Header';
+import UpdateInventoryItem from './components/UpdateInventoryItem/UpdateInventoryItem';
 
 function App() {
   return (
@@ -43,7 +43,7 @@ function App() {
         </Route>
         <Route path='/inventory/:id' element={
           <RequireAuth>
-            <InventorySingleItem></InventorySingleItem>
+            <UpdateInventoryItem></UpdateInventoryItem>
           </RequireAuth>}>
         </Route>
         <Route path='*' element={<NoPageFound></NoPageFound>}></Route>
