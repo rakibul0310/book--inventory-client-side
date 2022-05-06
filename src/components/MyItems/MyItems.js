@@ -10,7 +10,11 @@ const MyItems = () => {
 
     useEffect(() => {
         const url = `http://localhost:5000/myitems?email=${user.email}`;
-        axios.get(url)
+        axios.get(url, {
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("accessToken")}`
+            }
+        })
             .then(res => setMyItems(res.data))
     }, [user])
 
