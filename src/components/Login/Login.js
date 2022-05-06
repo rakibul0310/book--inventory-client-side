@@ -54,9 +54,20 @@ const Login = () => {
         const value = event.target.value;
         setPassword(value);
     }
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        signInWithEmailAndPassword(email, password);
+        await signInWithEmailAndPassword(email, password);
+        fetch('http://localhost:5000/login', {
+            method: 'POST',
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({ email })
+        })
+            .then(res => res.json())
+            .then(data => {
+                localStorage.setItem('accessToken', data.accessToken);
+            })
     }
     return (
         <div className='min-h-screen flex flex-col justify-center items-center'>
