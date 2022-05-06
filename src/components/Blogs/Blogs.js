@@ -39,7 +39,7 @@ const Blogs = () => {
                     </table>
                 </div>
 
-                <div className='flex flex-col justify-center items-center mb-10 mt-20 text-lg'>
+                <div className='flex flex-col justify-center items-center mb-10 mt-20 text-lg px-5'>
                     <h3 className='font-semibold mb-5 text-3xl text-gray-700'>Q2: When should you use nodejs and when should you use mongodb?</h3>
                     <div className='w-3/4'>
                         <h4 className='text-left font-semibold'>When use nodeJS:</h4>
@@ -81,7 +81,7 @@ const Blogs = () => {
                     </table>
                 </div>
 
-                <div className='flex flex-col justify-center items-center mb-10 mt-20'>
+                <div className='flex flex-col justify-center items-center mb-10 mt-20 px-4'>
                     <h3 className='font-semibold mb-5 text-3xl text-gray-700'>Q4: What is the purpose of jwt and how does it work?</h3>
                     <p className='w-full md:w-3/4 text-justify text-lg'>JSON stands for JavaScript Object Notation and is a text-based format for transmitting data across web applications. It stores information in an easy-to-access manner, both for developers and computers. It can be used as a data format by any programming language and is quickly becoming the preferred syntax for APIs, surpassing XML. <br /> JWTs are used as a secure way to authenticate users and share information. Typically, a private key, or secret, is used by the issuer to sign the JWT. The receiver of the JWT will verify the signature to ensure that the token hasn’t been altered after it was signed by the issuer. It is difficult for unauthenticated sources to guess the signing key and attempt to change the claims within the JWT.</p>
                 </div>
