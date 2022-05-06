@@ -9,13 +9,18 @@ const MyItems = () => {
     const [myItems, setMyItems] = useState([]);
 
     useEffect(() => {
-        const url = `http://localhost:5000/myitems?email=${user.email}`;
-        axios.get(url, {
-            headers: {
-                authorization: `Bearer ${localStorage.getItem("accessToken")}`
-            }
-        })
-            .then(res => setMyItems(res.data))
+        const getMyItem = async () => {
+            const url = `http://localhost:5000/myitems?email=${user.email}`;
+            await axios.get(url, {
+                headers: {
+                    authorization: `Bearer ${localStorage.getItem("accessToken")}`
+                }
+            })
+                .then(res => {
+                    setMyItems(res.data)
+                })
+        }
+        getMyItem();
     }, [user])
 
     const handleDeleteItem = (id) => {
@@ -29,7 +34,6 @@ const MyItems = () => {
                 .then(data => {
                     const remaining = myItems.filter(item => item._id !== id)
                     setMyItems(remaining);
-                    console.log(data);
                 })
         } else {
             return;

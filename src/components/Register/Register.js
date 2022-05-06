@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -26,7 +27,17 @@ const Register = () => {
     const from = location.state?.from?.pathname || "/";
 
     useEffect(() => {
-        if (user || googleUser) {
+        if (user) {
+            return navigate(from, { replace: true });
+        }
+        if (googleUser) {
+            const getAccesToken = async () => {
+                await axios.post('http://localhost:5000/login', { email: googleUser.user.email })
+                    .then(res => {
+                        localStorage.setItem('accessToken', res.data.accessToken);
+                    })
+            }
+            getAccesToken();
             return navigate(from, { replace: true });
         }
     }, [user, googleUser, navigate, from])
@@ -62,16 +73,26 @@ const Register = () => {
         const value = event.target.value;
         setConfrimPassword(value);
     }
-    const handleRegister = (e) => {
-        e.preventDefault();
 
+    const handleGoogleLogin = async () => {
+        await signInWithGoogle();
+    }
+
+    const handleRegister = async (e) => {
+        e.preventDefault();
         if (password === confrimPassword) {
-            createUserWithEmailAndPassword(email, password);
+            const userEmail = email;
+            await createUserWithEmailAndPassword(email, password);
+            await axios.post('http://localhost:5000/login', { email: userEmail })
+                .then(res => {
+                    localStorage.setItem('accessToken', res.data.accessToken);
+                })
             setErrPass(false);
         } else {
             setErrPass(true);
         }
     }
+
     return (
         <div className='min-h-screen flex flex-col justify-center items-center'>
             <h2 className='text-lg font-medium'>Register a new account</h2>
@@ -95,7 +116,7 @@ const Register = () => {
                     <div className='w-[80px] h-[3px] bg-slate-200'></div>
                 </div>
                 <div>
-                    <button onClick={() => signInWithGoogle()} className='my-5 px-6 py-1 bg-red-600 text-white hover:bg-[#1F2B6C] duration-500 text-lg font-semibold cursor-pointer rounded-sm'>
+                    <button onClick={handleGoogleLogin} className='my-5 px-6 py-1 bg-red-600 text-white hover:bg-[#1F2B6C] duration-500 text-lg font-semibold cursor-pointer rounded-sm'>
                         <img className='inline mr-3' src={googleLogo} alt="" height={30} width={30} />
                         Login with Google
                     </button>

@@ -47,7 +47,7 @@ const AddItem = () => {
 
     const handleAddItem = (e) => {
         e.preventDefault();
-        const newItem = { email, itemName, image, description, price, quantity, supplier, sold }
+        const newItem = { email, name: itemName, image, description, price, quantity, supplier, sold }
         fetch('http://localhost:5000/additem', {
             method: 'POST',
             headers: {

@@ -5,6 +5,7 @@ import auth from '../../firebase.init';
 
 import googleLogo from '../../images/Google-logo.png';
 import spinner from '../../images/spinner.gif';
+import axios from 'axios';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -24,7 +25,18 @@ const Login = () => {
     ] = useSignInWithEmailAndPassword(auth);
 
     useEffect(() => {
-        if (user || googleUser) {
+        if (user) {
+
+            return navigate(from, { replace: true });
+        }
+        if (googleUser) {
+            const getAccesToken = async () => {
+                await axios.post('http://localhost:5000/login', { email: googleUser.user.email })
+                    .then(res => {
+                        localStorage.setItem('accessToken', res.data.accessToken);
+                    })
+            }
+            getAccesToken();
             return navigate(from, { replace: true });
         }
     }, [user, googleUser, navigate, from])
@@ -54,21 +66,21 @@ const Login = () => {
         const value = event.target.value;
         setPassword(value);
     }
+
+    const handleGoogleLogin = async () => {
+        await signInWithGoogle();
+    }
+
     const handleLogin = async (e) => {
         e.preventDefault();
-        await signInWithEmailAndPassword(email, password);
-        fetch('http://localhost:5000/login', {
-            method: 'POST',
-            headers: {
-                "content-type": "application/json"
-            },
-            body: JSON.stringify({ email })
-        })
-            .then(res => res.json())
-            .then(data => {
-                localStorage.setItem('accessToken', data.accessToken);
+        const userEmail = email
+        await signInWithEmailAndPassword(userEmail, password);
+        await axios.post('http://localhost:5000/login', { email: userEmail })
+            .then(res => {
+                localStorage.setItem('accessToken', res.data.accessToken);
             })
     }
+
     return (
         <div className='min-h-screen flex flex-col justify-center items-center'>
             <h2 className='text-lg font-medium'>Login with email and password</h2>
@@ -88,7 +100,7 @@ const Login = () => {
                     <div className='w-[80px] h-[3px] bg-slate-200'></div>
                 </div>
                 <div>
-                    <button onClick={() => signInWithGoogle()} className='my-5 px-6 py-1 bg-red-600 text-white hover:bg-[#1F2B6C] duration-500 text-lg font-semibold cursor-pointer rounded-sm'>
+                    <button onClick={handleGoogleLogin} className='my-5 px-6 py-1 bg-red-600 text-white hover:bg-[#1F2B6C] duration-500 text-lg font-semibold cursor-pointer rounded-sm'>
                         <img className='inline mr-3' src={googleLogo} alt="" height={30} width={30} />
                         Login with Google
                     </button>
