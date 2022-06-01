@@ -4,8 +4,8 @@ import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-fireba
 import auth from '../../firebase.init';
 
 import googleLogo from '../../images/Google-logo.png';
-import spinner from '../../images/spinner.gif';
 import axios from 'axios';
+import Loading from '../Shared/Loading/Loading';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -52,9 +52,7 @@ const Login = () => {
         );
     }
     if (loading || googleLoading) {
-        return <div className=' flex justify-center items-center bg-[#F4EFEC]'>
-            <img src={spinner} alt="" />
-        </div>;
+        return <Loading />;
     }
 
 

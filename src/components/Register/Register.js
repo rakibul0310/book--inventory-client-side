@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 
 import googleLogo from '../../images/Google-logo.png';
-import spinner from '../../images/spinner.gif';
+import Loading from '../Shared/Loading/Loading';
 
 const Register = () => {
     const [email, setEmail] = useState('');
@@ -53,9 +53,7 @@ const Register = () => {
         );
     }
     if (loading || googleLoading) {
-        return <div className=' flex justify-center items-center bg-[#F4EFEC]'>
-            <img src={spinner} alt="" />
-        </div>;
+        return <Loading />;
     }
 
 

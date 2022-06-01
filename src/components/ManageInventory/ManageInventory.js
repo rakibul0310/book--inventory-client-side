@@ -3,15 +3,24 @@ import Inventory from './Inventory';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import Loading from '../Shared/Loading/Loading';
 
 const ManageInventory = () => {
     const [allItems, setAllItems] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         fetch('https://fierce-hollows-01189.herokuapp.com/books')
             .then(res => res.json())
-            .then(data => setAllItems(data))
+            .then(data => {
+                setAllItems(data);
+                setLoading(false);
+            })
     }, [])
+
+    if (loading) {
+        return <Loading />;
+    }
 
     const handleDeleteItem = (id) => {
         let agree = window.confirm("Are you sure?");
