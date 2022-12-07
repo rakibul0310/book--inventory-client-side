@@ -10,7 +10,7 @@ const ManageInventory = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('https://fierce-hollows-01189.herokuapp.com/books')
+        fetch('https://bookinventory.onrender.com/books')
             .then(res => res.json())
             .then(data => {
                 setAllItems(data);
@@ -25,7 +25,7 @@ const ManageInventory = () => {
     const handleDeleteItem = (id) => {
         let agree = window.confirm("Are you sure?");
         if (agree) {
-            const url = `https://fierce-hollows-01189.herokuapp.com/inventory/${id}`;
+            const url = `https://bookinventory.onrender.com/inventory/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

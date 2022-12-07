@@ -10,7 +10,7 @@ const UpdateInventoryItem = () => {
     const [quantity, setQuantity] = useState(0);
 
     useEffect(() => {
-        const url = `https://fierce-hollows-01189.herokuapp.com/inventory/${id}`;
+        const url = `https://bookinventory.onrender.com/inventory/${id}`;
         axios.get(url)
             .then(res => {
                 setItem(res.data);
@@ -25,7 +25,7 @@ const UpdateInventoryItem = () => {
             return;
         }
         newItem.quantity = newItem.quantity - 1;
-        fetch(`https://fierce-hollows-01189.herokuapp.com/inventory/${id}`, {
+        fetch(`https://bookinventory.onrender.com/inventory/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -42,7 +42,7 @@ const UpdateInventoryItem = () => {
         e.preventDefault();
         const restockQuantity = e.target.quantity.value;
         const newItem = item;
-        const url = `https://fierce-hollows-01189.herokuapp.com/inventory/${newItem._id}`;
+        const url = `https://bookinventory.onrender.com/inventory/${newItem._id}`;
         newItem.quantity = newItem.quantity + parseInt(restockQuantity);
         fetch(url, {
             method: 'PUT',

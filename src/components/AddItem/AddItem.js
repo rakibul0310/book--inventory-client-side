@@ -48,7 +48,7 @@ const AddItem = () => {
     const handleAddItem = (e) => {
         e.preventDefault();
         const newItem = { email, name: itemName, image, description, price, quantity, supplier, sold }
-        fetch('https://fierce-hollows-01189.herokuapp.com/additem', {
+        fetch('https://bookinventory.onrender.com/additem', {
             method: 'POST',
             headers: {
                 "content-type": 'application/json'
